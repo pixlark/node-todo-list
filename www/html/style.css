@@ -1,3 +1,12 @@
 table, th, td {
 	border: 1px solid black;
 }
+
+#fifth-column {
+	border: none;
+}
+
+.table-input {
+	width: 100%;
+	box-sizing: border-box;
+}
