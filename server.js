@@ -7,7 +7,7 @@ const db_connection = new Client({
 	host: '127.0.0.1',
 	database: 'todolist',
 	port: 5432,
-})
+});
 
 function respondOnlyHTML(response, code, html)
 {
