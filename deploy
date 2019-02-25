@@ -1,0 +1,2 @@
+#!/usr/bin/env fish
+cp -r www /var
