@@ -18,9 +18,7 @@ function respondOnlyHTML(response, code, html)
 
 async function respondWithTasksFromDB(response)
 {
-	//await db_connection.connect();
 	var tasks = (await db_connection.query('SELECT * from tasks;')).rows;
-	//await db_connection.end();
 	response.writeHead(200, { 'Content-Type' : 'text/json' });
 	response.write(JSON.stringify(tasks));
 	response.end();
@@ -62,6 +60,25 @@ function deleteTaskFromPost(request, response)
 	});
 }
 
+async function updateTasks(changes)
+{
+	for (var ident in changes) {
+		var fmt = 'update tasks set completed=$1 where tasks.ident=$2;';
+		var values = [changes[ident], ident];
+		await db_connection.query(fmt, values);
+	}
+}
+
+function updateTasksFromPost(request, response)
+{
+	request.on('data', function(data) {
+		var changes = JSON.parse(data);
+		updateTasks(changes);
+		response.writeHead(201);
+		response.end();
+	});
+}
+
 function serverFunc(request, response)
 {
 	function unsupportedRequest() {
@@ -88,6 +105,13 @@ function serverFunc(request, response)
 		// Delete task via UUID
 		if (request.method === 'POST') {
 			deleteTaskFromPost(request, response);
+		} else {
+			unsupportedRequest();
+		}
+	} else if (request.url === '/updatecompleted') {
+		// Update all tasks completion values
+		if (request.method === 'POST') {
+			updateTasksFromPost(request, response);
 		} else {
 			unsupportedRequest();
 		}

@@ -10,40 +10,45 @@
   </head>
   <body>
 	<h1>TODO list</h1>
-	<!-- <form>-->
-	  <table id="tasks-table">
-		<thead>
-		  <tr>
-			<th>UUID</th>
-			<th>Completed</th>
-			<th>Name</th>
-			<th>Description</th>
-		  </tr>
-		</thead>
-		<tbody>
-		  <tr>
-			<td></td>
-			<td></td>
-			<td>
-			  <input id="name-input"
-					 class="table-input"
-					 type="text">
-			</td>
-			<td>
-			  <input id="description-input"
-					 class="table-input"
-					 type="text">
-			</td>
-			<td id="fifth-column">
-			  <button class="table-input"
-					  type="button"
-					  onclick="click_addTask();">
-				Add Task
-			  </button>
-			</td>
-		  </tr>
-		</tbody>
-	  </table>
-	<!-- </form>-->
+	<table id="tasks-table">
+	  <thead>
+		<tr>
+		  <th>UUID</th>
+		  <th>Completed</th>
+		  <th>Name</th>
+		  <th>Description</th>
+		</tr>
+	  </thead>
+	  <tbody>
+		<tr>
+		  <td></td>
+		  <td>
+			<button id="update-completed"
+					class="table-input"
+					type="button"
+					onclick="click_updateCompleted();">
+			  Update
+			</button>
+		  </td>
+		  <td>
+			<input id="name-input"
+				   class="table-input"
+				   type="text">
+		  </td>
+		  <td>
+			<input id="description-input"
+				   class="table-input"
+				   type="text">
+		  </td>
+		  <td class="unbordered">
+			<button class="table-input"
+					type="button"
+					onclick="click_addTask();">
+			  Add Task
+			</button>
+		  </td>
+		</tr>
+	  </tbody>
+	</table>
   </body>
 </html>

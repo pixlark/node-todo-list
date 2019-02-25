@@ -43,6 +43,19 @@ function deleteTask(i)
 	});
 }
 
+function updateCompleted()
+{
+	var rows = $('#tasks-table > tbody').children();
+	var checks = {};
+	for (var i = 0; i < rows.length - 1; i++) {
+		checks[rows[i].children[0].innerText] = rows[i].children[1].children[0].checked;
+	}
+	//console.log(JSON.stringify(checks));
+	postAPI('updatecompleted', JSON.stringify(checks), function() {
+		window.location.reload();
+	});
+}
+
 // Button callback
 function click_addTask()
 {
@@ -54,6 +67,13 @@ function click_addTask()
 function click_deleteTask(i)
 {
 	deleteTask(i);
+	return false;
+}
+
+// Button callback
+function click_updateCompleted()
+{
+	updateCompleted();
 	return false;
 }
 
@@ -76,11 +96,12 @@ function main()
 					.prev();
 				var row = rows[i];
 				html_row.append('<td>' + row.ident +'</td>');
-				html_row.append('<td>' + row.completed +'</td>');
+				html_row.append(`<td><input type="checkbox"
+                                            ${row.completed ? 'checked' : ''}></input></td>`);
 				html_row.append('<td>' + row.name +'</td>');
 				html_row.append('<td>' + row.description +'</td>');
-				html_row.append(`<td><button id="delete-button__${ i }" 
-                                             class="table-input" 
+				html_row.append(`<td class="unbordered"><button id="delete-button__${ i }" 
+                                             class="table-input"
                                              type="button" 
                                              onclick="click_deleteTask(${ i });">
                                  Delete</button></td>`);
