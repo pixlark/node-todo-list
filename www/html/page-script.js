@@ -1,3 +1,5 @@
+var identifiers = [];
+
 function getAPI(subdomain, callback)
 {
 	var xhr = new XMLHttpRequest();
@@ -37,7 +39,8 @@ function addTask()
 
 function deleteTask(i)
 {
-	var ident = $(`#delete-button__${ i }`).parent().siblings().first().text();
+	var ident = identifiers[i];
+	console.log(ident);
 	postAPI('deletetask', ident, function() {
 		window.location.reload();
 	});
@@ -48,7 +51,7 @@ function updateCompleted()
 	var rows = $('#tasks-table > tbody').children();
 	var checks = {};
 	for (var i = 0; i < rows.length - 1; i++) {
-		checks[rows[i].children[0].innerText] = rows[i].children[1].children[0].checked;
+		checks[identifiers[i]] = rows[i].children[0].children[0].checked;
 	}
 	//console.log(JSON.stringify(checks));
 	postAPI('updatecompleted', JSON.stringify(checks), function() {
@@ -95,7 +98,8 @@ function main()
 					.last()
 					.prev();
 				var row = rows[i];
-				html_row.append('<td>' + row.ident +'</td>');
+				//html_row.append('<td>' + row.ident +'</td>');
+				identifiers.push(row.ident);
 				html_row.append(`<td><input type="checkbox"
                                             ${row.completed ? 'checked' : ''}></input></td>`);
 				html_row.append('<td>' + row.name +'</td>');
