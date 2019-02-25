@@ -1,5 +1,43 @@
+* {
+	font-family: sans-serif;
+}
+
+h1 {
+	text-align: center;
+}
+
+#tasks-table {
+	margin-left:  auto;
+	margin-right: auto;
+}
+
 table, th, td {
+	/*border: 1px solid black;*/
+}
+
+th {
+	background-color: #dbdbdb;
+}
+
+td {
+	background-color: #f4f4f4;
+}
+
+button {
+	background: transparent;
 	border: 1px solid black;
+	border-radius: 6px;
+	padding-top:    6px;
+	padding-bottom: 6px;
+	height: 100%;
+}
+
+button:hover {
+	border: 1px solid grey;
+}
+
+button:active {
+	border: 1px solid #dddddd;
 }
 
 .unbordered {
@@ -9,4 +47,8 @@ table, th, td {
 .table-input {
 	width: 100%;
 	box-sizing: border-box;
+}
+
+.checkbox {
+	text-align: center;
 }

@@ -100,7 +100,7 @@ function main()
 				var row = rows[i];
 				//html_row.append('<td>' + row.ident +'</td>');
 				identifiers.push(row.ident);
-				html_row.append(`<td><input type="checkbox"
+				html_row.append(`<td><input type="checkbox" class="table-input" class="checkbox"
                                             ${row.completed ? 'checked' : ''}></input></td>`);
 				html_row.append('<td>' + row.name +'</td>');
 				html_row.append('<td>' + row.description +'</td>');
