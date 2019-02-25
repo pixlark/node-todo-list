@@ -1,2 +1,2 @@
-#!/usr/bin/env fish
+#!/usr/bin/env bash
 cp -r www /var
