@@ -84,8 +84,6 @@ function serverFunc(request, response)
 	function unsupportedRequest() {
 		respondOnlyHTML(response, 400, '<h1>Unsupported request method</h1>');
 	}
-	
-	console.log('Got request...');
 
 	if (request.url === '/tasks') {
 		// Return JSON of the tasks from the database
@@ -116,7 +114,6 @@ function serverFunc(request, response)
 			unsupportedRequest();
 		}
 	} else {
-		console.log('404\'d');
 		respondOnlyHTML(response, 404, '<h1>Error 404: Page not found</h1>');
 	}
 }
@@ -126,7 +123,6 @@ async function main()
 	await db_connection.connect();
 	const server = Http.createServer(serverFunc);
 	server.listen(3000);
-	console.log('Server running on 127.0.0.1:3000');
 }
 
 main();
