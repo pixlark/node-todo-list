@@ -2,6 +2,9 @@ const Http = require('http');
 const { Client } = require('pg');
 const generateUuid = require('uuid');
 
+/*
+ * Change this depending on your setup
+ */
 const db_connection = new Client({
 	user: 'pixlark',
 	host: '127.0.0.1',
